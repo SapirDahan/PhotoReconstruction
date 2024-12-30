@@ -86,7 +86,7 @@ def run_inference_neural_network(model_path, images, grid_size=4, target_size=(2
             # Ensure the input is a PIL.Image
             if isinstance(image, np.ndarray):
                 if image.max() <= 1:  # If normalized, scale to 0-255
-                    image = (image * 255).astype(np.uint8)
+                    image = (image * 255).astype(np.float32)
                 image = Image.fromarray(image)
 
             # Preprocess and run inference
