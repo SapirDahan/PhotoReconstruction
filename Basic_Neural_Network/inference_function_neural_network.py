@@ -58,17 +58,7 @@ class ColorPredictor(nn.Module):
 
 
 def run_inference_neural_network(model_path, images, grid_size=4, target_size=(224, 224), device="cpu"):
-    """
-    Perform inference on a list of images and return images with predictions overlaid.
-    Args:
-        model_path (str): Path to the saved .pth model file.
-        images (list): List of PIL.Image objects or NumPy arrays.
-        grid_size (int): Grid size (e.g., 4 for a 4x4 grid).
-        target_size (tuple): Target size for image preprocessing.
-        device (str): Device to use ('cpu' or 'cuda').
-    Returns:
-        list: A list of images with overlaid predictions.
-    """
+
     # Load the model
     model = ColorPredictor(grid_size=grid_size).to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
@@ -101,7 +91,7 @@ def run_inference_neural_network(model_path, images, grid_size=4, target_size=(2
 
     return overlaid_images
 
-# Function: Overlay predictions onto black rectangular region
+# Overlay predictions onto black rectangular region
 def overlay_predictions_on_black_rectangle(masked_image, predictions, grid_size):
     """Overlay the predicted RGB grid on the black rectangle."""
     # Convert to NumPy array if needed
